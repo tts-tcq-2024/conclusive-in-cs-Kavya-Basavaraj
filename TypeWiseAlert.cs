@@ -10,12 +10,7 @@ public class TypeWiseAlert
         TOO_HIGH
     }
 
-    public enum CoolingType
-    {
-        PASSIVE_COOLING,
-        HI_ACTIVE_COOLING,
-        MED_ACTIVE_COOLING
-    }
+   
 
 
     public struct BatteryCharacter
