@@ -17,11 +17,6 @@ public class TypeWiseAlert
         MED_ACTIVE_COOLING
     }
 
-    public enum AlertTarget
-    {
-        TO_CONTROLLER,
-        TO_EMAIL
-    }
 
     public struct BatteryCharacter
     {
