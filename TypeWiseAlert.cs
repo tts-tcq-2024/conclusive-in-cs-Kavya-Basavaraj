@@ -13,10 +13,6 @@ public class TypeWiseAlert
    
 
 
-    public interface IAlertSender
-    {
-        void Send(BreachType breachType);
-    }
 
     public class ControllerAlert : IAlertSender
     {
