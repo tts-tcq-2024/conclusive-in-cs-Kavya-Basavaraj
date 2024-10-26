@@ -14,14 +14,7 @@ public class TypeWiseAlert
 
 
 
-    public class ControllerAlert : IAlertSender
-    {
-        public void Send(BreachType breachType)
-        {
-            const ushort header = 0xfeed;
-            Console.WriteLine($"{header} : {breachType}\n");
-        }
-    }
+   
 
     public class EmailAlert : IAlertSender
     {
