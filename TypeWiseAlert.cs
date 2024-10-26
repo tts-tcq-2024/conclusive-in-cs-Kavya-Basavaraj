@@ -63,5 +63,42 @@ public class TypeWiseAlert
         }
     }
 
-  
+    public static BreachType InferBreach(double value, double lowerLimit, double upperLimit)
+    {
+        if (value < lowerLimit)
+        {
+            return BreachType.TOO_LOW;
+        }
+        if (value > upperLimit)
+        {
+            return BreachType.TOO_HIGH;
+        }
+        return BreachType.NORMAL;
+    }
+
+    public static BreachType ClassifyTemperatureBreach(CoolingType coolingType, double temperatureInC)
+    {
+        var limits = new Dictionary<CoolingType, (int lowerLimit, int upperLimit)>
+        {
+            { CoolingType.PASSIVE_COOLING, (0, 35) },
+            { CoolingType.HI_ACTIVE_COOLING, (0, 45) },
+            { CoolingType.MED_ACTIVE_COOLING, (0, 40) }
+        };
+
+        var (lowerLimit, upperLimit) = limits[coolingType];
+        return InferBreach(temperatureInC, lowerLimit, upperLimit);
+    }
+
+    public static void CheckAndAlert(AlertTarget alertTarget, BatteryCharacter batteryChar, double temperatureInC)
+    {
+        BreachType breachType = ClassifyTemperatureBreach(batteryChar.coolingType, temperatureInC);
+        IAlertSender alertSender = alertTarget switch
+        {
+            AlertTarget.TO_CONTROLLER => new ControllerAlert(),
+            AlertTarget.TO_EMAIL => new EmailAlert(),
+            _ => throw new ArgumentException("Invalid alert target")
+        };
+
+        alertSender.Send(breachType);
+    }
 }
