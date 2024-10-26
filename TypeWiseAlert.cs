@@ -10,12 +10,6 @@ public class TypeWiseAlert
         TOO_HIGH
     }
 
-   
-
-
-
-   
-
     public class EmailAlert : IAlertSender
     {
         private readonly string recepient = "a.b@c.com";
