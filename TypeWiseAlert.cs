@@ -13,12 +13,6 @@ public class TypeWiseAlert
    
 
 
-    public struct BatteryCharacter
-    {
-        public CoolingType coolingType;
-        public string brand;
-    }
-
     public interface IAlertSender
     {
         void Send(BreachType breachType);
